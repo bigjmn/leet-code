@@ -24,6 +24,17 @@ def uniquePaths(m, n):
     for i in range(m):
         for j in range(n):
             subpath(i, j)
-            
+
     #get value we want
     return memo[(m-1, n-1)]
+
+#SIMILAR BUT FASTER
+def altUniquePaths(m, n):
+    memo = {}
+    for i in range(m):
+        for j in range(n):
+            if i == 0 or j == 0:
+                memo[(i,j)] = 1
+                continue
+            memo[(i,j)] = memo[(i-1,j)]+memo[(i,j-1)]
+    return memo[(m-1,n-1)]
